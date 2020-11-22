@@ -22,6 +22,8 @@ import javax.swing.JLabel;
 import java.awt.image.*;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
 /**
  *  @author M.NAVEEN
  *  RANDOM CODER'S
@@ -108,14 +110,26 @@ public class Guiserver implements ActionListener {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
-		textField.setBounds(10, 10, 367, 30);
+		textField.setBounds(10, 10, 343, 30);
 		Bottom_panel.add(textField);
 		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("SEND");
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBackground(new Color(0, 139, 139));
+		btnNewButton.setFont(new Font("Segoe UI Black", Font.ITALIC, 16));
+		btnNewButton.setBounds(374, 10, 85, 28);
+		Bottom_panel.add(btnNewButton);
 		
 		JPanel Center_panel = new JPanel();
 		Center_panel.setBackground(new Color(255, 255, 255));
 		Center_panel.setBounds(0, 51,486, 408);
 		frame.getContentPane().add(Center_panel);
+		Center_panel.setLayout(null);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 10, 466, 388);
+		Center_panel.add(textArea);
 		//frame.setUndecorated(true);
 	}
 
