@@ -33,7 +33,7 @@ public class Guiserver implements ActionListener {
 
 	private JFrame frame;
 	private JTextField textField;
-
+	JTextArea textArea;
 	/**
 	 * Launch the application.
 	 */
@@ -114,12 +114,8 @@ public class Guiserver implements ActionListener {
 		Bottom_panel.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("SEND");
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBackground(new Color(0, 139, 139));
-		btnNewButton.setFont(new Font("Segoe UI Black", Font.ITALIC, 16));
-		btnNewButton.setBounds(374, 10, 85, 28);
-		Bottom_panel.add(btnNewButton);
+		
+		
 		
 		JPanel Center_panel = new JPanel();
 		Center_panel.setBackground(new Color(255, 255, 255));
@@ -127,14 +123,39 @@ public class Guiserver implements ActionListener {
 		frame.getContentPane().add(Center_panel);
 		Center_panel.setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
+		
+		textArea.setForeground(new Color(255, 0, 255));
+		textArea.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		textArea.setBounds(10, 10, 466, 388);
+		//to prevent it from editing
+		textArea.setEditable(false);
+		textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		//textArea.setText(" ");
 		Center_panel.add(textArea);
 		//frame.setUndecorated(true);
+		
+		JButton btnNewButton = new JButton("SEND");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{textArea.setText(textArea.getText()+"\n\t\t\t"+textField.getText());
+			
+			textField.setText(null);
+			}
+		});
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBackground(new Color(0, 139, 139));
+		btnNewButton.setFont(new Font("Segoe UI Black", Font.ITALIC, 16));
+		btnNewButton.setBounds(374, 10, 85, 28);
+		Bottom_panel.add(btnNewButton);
+		
+			
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent arg0)
+	{
+		//textArea.setText(textArea.getName()+"\n"+textField.getText());
 		
 	}
 }
