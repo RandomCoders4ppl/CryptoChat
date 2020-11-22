@@ -57,8 +57,8 @@ public class GUIclient {
 		connect();
 	}
    public static  void connect()
-   {  while(true)
-   { String inputdata;
+   {  
+    String inputdata;
 	      try {
 	    	  s=new Socket("127.0.0.1",6001);
 	    	  in=new DataInputStream(s.getInputStream());
@@ -70,7 +70,7 @@ public class GUIclient {
 	      {
 	    	System.out.println( e.getClass().getName());
 	      }
-   }
+   
    }
 	/**
 	 * Create the application.

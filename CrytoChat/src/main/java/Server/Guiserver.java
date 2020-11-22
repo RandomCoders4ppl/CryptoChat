@@ -62,8 +62,8 @@ public class Guiserver implements ActionListener {
 		connect();
 	}
     public static void connect()
-    {  while(true)
-    	{String outputdata;
+    { 
+    	String outputdata;
 	      try {
 	    	  user_server=new ServerSocket(6001);
 	    	  s=user_server.accept();
@@ -78,7 +78,7 @@ public class Guiserver implements ActionListener {
 	      {
 	    	System.out.println( e.getClass().getName());
 	      }
-    	}
+    	
     }
 	/**
 	 * Create the application.
