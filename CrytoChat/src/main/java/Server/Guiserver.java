@@ -14,18 +14,23 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.image.*;
 import java.awt.Font;
+import javax.swing.JTextField;
 /**
  *  @author M.NAVEEN
  *  RANDOM CODER'S
  *  Tech/Project Lead Android Club
  */
-public class Guiserver {
+public class Guiserver implements ActionListener {
 
 	private JFrame frame;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -76,6 +81,11 @@ public class Guiserver {
 		lblNewLabel_1.setBounds(0, 0, 66, 50);
 		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("back-arrow.png")).getImage().getScaledInstance(66, 50, Image.SCALE_DEFAULT));
 		lblNewLabel_1.setIcon(imageIcon2);
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
 		Top_panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("NAVEEN");
@@ -96,10 +106,22 @@ public class Guiserver {
 		frame.getContentPane().add(Bottom_panel);
 		Bottom_panel.setLayout(null);
 		
+		textField = new JTextField();
+		textField.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
+		textField.setBounds(10, 10, 367, 30);
+		Bottom_panel.add(textField);
+		textField.setColumns(10);
+		
 		JPanel Center_panel = new JPanel();
 		Center_panel.setBackground(new Color(255, 255, 255));
 		Center_panel.setBounds(0, 51,486, 408);
 		frame.getContentPane().add(Center_panel);
+		//frame.setUndecorated(true);
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
