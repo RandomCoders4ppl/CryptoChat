@@ -17,6 +17,7 @@ import java.awt.Image;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.image.*;
+import java.awt.Font;
 /**
  *  @author M.NAVEEN
  *  RANDOM CODER'S
@@ -71,6 +72,24 @@ public class Guiserver {
 		//lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("male.png")).getImage().getScaledInstance());
 		Top_panel.add(lblNewLabel);
 		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(0, 0, 66, 50);
+		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("back-arrow.png")).getImage().getScaledInstance(66, 50, Image.SCALE_DEFAULT));
+		lblNewLabel_1.setIcon(imageIcon2);
+		Top_panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("NAVEEN");
+		lblNewLabel_2.setForeground(new Color(255, 250, 250));
+		lblNewLabel_2.setFont(new Font("Palatino Linotype", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(169, 8, 82, 40);
+		Top_panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Active");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setBounds(261, 3, 77, 40);
+		Top_panel.add(lblNewLabel_3);
+	
 		JPanel Bottom_panel = new JPanel();
 		Bottom_panel.setBackground(new Color(255, 99, 71));
 		Bottom_panel.setBounds(0, 459, 486, 50);
