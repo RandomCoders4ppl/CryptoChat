@@ -9,11 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.BorderLayout;
-
+import javax.swing.JLabel;
+import java.awt.image.*;
 /**
  *  @author M.NAVEEN
  *  RANDOM CODER'S
@@ -57,19 +60,26 @@ public class Guiserver {
 		
 		JPanel Top_panel = new JPanel();
 		Top_panel.setBackground(new Color(255, 99, 71));
-		Top_panel.setBounds(0, 0, frame.getWidth(), 50);
+		Top_panel.setBounds(0, 0, 486, 50);
 		frame.getContentPane().add(Top_panel);
 		Top_panel.setLayout(null);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(76, 0, 70, 50);
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("male.png")).getImage().getScaledInstance(70, 50, Image.SCALE_DEFAULT));
+		lblNewLabel.setIcon(imageIcon);
+		//lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("male.png")).getImage().getScaledInstance());
+		Top_panel.add(lblNewLabel);
+		
 		JPanel Bottom_panel = new JPanel();
 		Bottom_panel.setBackground(new Color(255, 99, 71));
-		Bottom_panel.setBounds(0, 459, frame.getWidth(), 50);
+		Bottom_panel.setBounds(0, 459, 486, 50);
 		frame.getContentPane().add(Bottom_panel);
 		Bottom_panel.setLayout(null);
 		
 		JPanel Center_panel = new JPanel();
 		Center_panel.setBackground(new Color(255, 255, 255));
-		Center_panel.setBounds(0, 51,frame.getWidth(), 408);
+		Center_panel.setBounds(0, 51,486, 408);
 		frame.getContentPane().add(Center_panel);
 	}
 }
