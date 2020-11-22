@@ -1,45 +1,41 @@
 /**
  * 
  */
-package Server;
+package Client;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.image.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.awt.Font;
-import javax.swing.JTextField;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+///
+//import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
  *  @author M.NAVEEN
  *  RANDOM CODER'S
  *  Tech/Project Lead Android Club
  */
-public class Guiserver implements ActionListener {
-
+public class GUIclient {
 	private JFrame frame;
 	private JTextField textField;
 	static JTextArea textArea;
-	static ServerSocket user_server;
+  //  static ServerSocket user_server;
     static Socket s;
 	static DataInputStream in;
 	static DataOutputStream out;
@@ -50,41 +46,38 @@ public class Guiserver implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Guiserver window = new Guiserver();
+					GUIclient window = new GUIclient();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			
 		});
-		
-		//sockets
 		connect();
 	}
-    public static void connect()
-    {  while(true)
-    	{String outputdata;
+   public static  void connect()
+   {  while(true)
+   { String inputdata;
 	      try {
-	    	  user_server=new ServerSocket(6001);
-	    	  s=user_server.accept();
+	    	  s=new Socket("127.0.0.1",6001);
 	    	  in=new DataInputStream(s.getInputStream());
 	    	  out=new DataOutputStream(s.getOutputStream());
-	    	  outputdata=in.readUTF();
-	    	  textArea.setText(textArea.getText()+"\n"+outputdata);
-	    	//  s.close();
-	    	//  user_server.close();
+	    	  inputdata=in.readUTF();
+	    	  textArea.setText(textArea.getText()+"\n"+inputdata);
 	      }
 	      catch(Exception e)
 	      {
 	    	System.out.println( e.getClass().getName());
 	      }
-    	}
-    }
+   }
+   }
 	/**
 	 * Create the application.
 	 */
-	public Guiserver() {
+	public GUIclient() {
 		initialize();
+		
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class Guiserver implements ActionListener {
 		});
 		Top_panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("NAVEEN");
+		JLabel lblNewLabel_2 = new JLabel("PRAVEEN");
 		lblNewLabel_2.setForeground(new Color(255, 250, 250));
 		lblNewLabel_2.setFont(new Font("Palatino Linotype", Font.BOLD, 15));
 		lblNewLabel_2.setBounds(169, 8, 82, 40);
@@ -170,11 +163,9 @@ public class Guiserver implements ActionListener {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{textArea.setText(textArea.getText()+"\n\t\t\t"+textField.getText());
-			try {
+			  try {
 				out.writeUTF(textField.getText());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			} catch (IOException e) {System.out.println(e.getClass().getName());}
 			textField.setText(null);
 			}
 		});
@@ -192,5 +183,6 @@ public class Guiserver implements ActionListener {
 		//textArea.setText(textArea.getName()+"\n"+textField.getText());
 		
 	}
+
 }
 
