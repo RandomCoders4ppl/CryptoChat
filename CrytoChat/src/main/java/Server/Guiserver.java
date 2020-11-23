@@ -43,6 +43,7 @@ public class Guiserver implements ActionListener {
     static Socket s;
 	static DataInputStream in;
 	static DataOutputStream out;
+	static int flag=0;
 	/**
 	 * Launch the application.
 	 */
@@ -69,10 +70,13 @@ public class Guiserver implements ActionListener {
 	    	  s=user_server.accept();
 	    	  in=new DataInputStream(s.getInputStream());
 	    	  out=new DataOutputStream(s.getOutputStream());
-	    	  outputdata=in.readUTF();
+	    	  while(flag!=-1)
+	    	  {  outputdata=in.readUTF();
 	    	  textArea.setText(textArea.getText()+"\n"+outputdata);
-	    	//  s.close();
-	    	//  user_server.close();
+	    	  
+	    	  }
+	    	  s.close();
+	    	  user_server.close();
 	      }
 	      catch(Exception e)
 	      {
@@ -114,7 +118,8 @@ public class Guiserver implements ActionListener {
 		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("back-arrow.png")).getImage().getScaledInstance(66, 50, Image.SCALE_DEFAULT));
 		lblNewLabel_1.setIcon(imageIcon2);
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+			{    flag=-1;
 				System.exit(0);
 			}
 		});

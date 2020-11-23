@@ -63,8 +63,10 @@ public class GUIclient {
 	    	  s=new Socket("127.0.0.1",6001);
 	    	  in=new DataInputStream(s.getInputStream());
 	    	  out=new DataOutputStream(s.getOutputStream());
-	    	  inputdata=in.readUTF();
+	    	  while(true)
+	    	  {  inputdata=in.readUTF();
 	    	  textArea.setText(textArea.getText()+"\n"+inputdata);
+	    	  }
 	      }
 	      catch(Exception e)
 	      {
