@@ -3,13 +3,4 @@
   <groupId>Random.coders</groupId>
   <artifactId>CrytoChat</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
-   <!-- https://mvnrepository.com/artifact/com.google.firebase/firebase-admin -->
-   <dependencies>
-<dependency>
-    <groupId>com.google.firebase</groupId>
-    <artifactId>firebase-admin</artifactId>
-    <version>7.0.1</version>
-</dependency>
-  </dependencies> 
 </project>
