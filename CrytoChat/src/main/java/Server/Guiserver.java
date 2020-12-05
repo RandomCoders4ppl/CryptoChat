@@ -8,6 +8,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
@@ -25,8 +27,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 /**
@@ -38,12 +44,14 @@ public class Guiserver implements ActionListener {
 
 	private JFrame frame;
 	private JTextField textField;
-	static JTextArea textArea;
 	static ServerSocket user_server;
     static Socket s;
 	static DataInputStream in;
 	static DataOutputStream out;
 	static int flag=0;
+	static JPanel p2;
+	static JLabel lblNewLabel_4;
+	static JPanel panel;
 	/**
 	 * Launch the application.
 	 */
@@ -72,8 +80,8 @@ public class Guiserver implements ActionListener {
 	    	  out=new DataOutputStream(s.getOutputStream());
 	    	  while(flag!=-1)
 	    	  {  outputdata=in.readUTF();
-	    	  textArea.setText(textArea.getText()+"\n"+outputdata);
-	    	  
+	    	 // textArea.setText(textArea.getText()+"\n"+outputdata);
+	    	     
 	    	  }
 	    	  s.close();
 	    	  user_server.close();
@@ -149,46 +157,27 @@ public class Guiserver implements ActionListener {
 		Bottom_panel.add(textField);
 		textField.setColumns(10);
 		
-		
-		
-		
-		JPanel Center_panel = new JPanel();
-		Center_panel.setBackground(new Color(255, 255, 255));
-		Center_panel.setBounds(0, 51,486, 408);
-		frame.getContentPane().add(Center_panel);
-		Center_panel.setLayout(null);
-		
-		textArea = new JTextArea();
-		
-		textArea.setForeground(new Color(255, 0, 255));
-		textArea.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
-		textArea.setBounds(10, 10, 466, 388);
-		//to prevent it from editing
-		textArea.setEditable(false);
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		//textArea.setText(" ");
-		Center_panel.add(textArea);
+	
+		 
 		//frame.setUndecorated(true);
 		
 		JButton btnNewButton = new JButton("SEND");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{textArea.setText(textArea.getText()+"\n\t\t\t"+textField.getText());
-			try {
-				out.writeUTF(textField.getText());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			textField.setText(null);
-			}
-		});
+		
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setBackground(new Color(0, 139, 139));
 		btnNewButton.setFont(new Font("Segoe UI Black", Font.ITALIC, 16));
 		btnNewButton.setBounds(374, 10, 85, 28);
+		btnNewButton.addActionListener(this);
 		Bottom_panel.add(btnNewButton);
 		
+		
+		panel = new JPanel();
+		panel.setBackground(Color.ORANGE);
+		panel.setBounds(0, 49, 486, 408);
+		frame.getContentPane().add(panel);
+		panel.setLayout(new BorderLayout());
+		
+	
 			
 	}
 
@@ -196,6 +185,43 @@ public class Guiserver implements ActionListener {
 	{
 		//textArea.setText(textArea.getName()+"\n"+textField.getText());
 		
+	  //textArea.setText(textArea.getText()+"\n\t\t\t"+textField.getText());
+		String message=textField.getText();
+	      System.out.println(textField.getText());
+	        JPanel panel_1 = new JPanel();
+			panel_1.setBounds(284, 25, 202, 65);
+			panel_1.setLayout(new BoxLayout(panel_1,BoxLayout.Y_AXIS));
+			panel.add(panel_1);
+           // panel.repaint();
+	        JLabel  lblNewLabel_5 = new JLabel(message);
+			lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lblNewLabel_5.setBackground(new Color(0, 128, 128));
+			lblNewLabel_5.setBounds(0, 0, 202, 50);
+			lblNewLabel_5.setOpaque(true);
+			lblNewLabel_5.setBorder(new EmptyBorder(5,15,5,5));
+			Calendar cal=Calendar.getInstance();
+			
+			SimpleDateFormat date=new SimpleDateFormat("HH:mm:mm");
+			String s=date.format(cal.getTime()).toString();
+			JLabel l6=new JLabel(s);
+			l6.setBounds(0,50,202, 15);
+			l6.setOpaque(true);
+			//System.out.print(date.format(cal.getTime()));
+			l6.setFont(new Font("Tahoma", Font.BOLD, 10));
+			l6.setBackground(Color.WHITE);
+			panel_1.add(lblNewLabel_5);
+			panel_1.add(l6);
+			panel_1.repaint();
+	     
+	try { 
+		out.writeUTF(textField.getText());
+	} catch (IOException e) {
+		e.printStackTrace();
 	}
+	textField.setText(null);
+	
+	}
+	
+	
 }
 
