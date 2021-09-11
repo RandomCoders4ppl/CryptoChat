@@ -7,6 +7,9 @@ on:
 jobs:
   GreetCommitter:    
     runs-on: ubuntu-latest
+    permissions:
+      issues: read
+      pull-requests: read
     steps:
     - name: "Greet contributor"
       uses: ibakshay/greet-contributors-action@v3
